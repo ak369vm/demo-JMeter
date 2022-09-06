@@ -13,12 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run JMeter Action on a test
-        uses: rbhadti94/apache-jmeter-action@v0.5.0
+      - name: PerfAction for JMeter
+        uses: QAInsights/PerfAction@v3.1
         with:
-          testFilePath: jmeter.jmx
-          outputReportsFolder: result.jtl
-          args: "--loglevel INFO"
+    # jmeter test plan to execute
+         test-plan-path: jmeter.jmx
           
       - name: Upload Results
         uses: actions/upload-artifact@v2
