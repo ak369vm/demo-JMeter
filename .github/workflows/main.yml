@@ -17,12 +17,12 @@ jobs:
         uses: rbhadti94/apache-jmeter-action@v0.5.0
         with:
           testFilePath: jmeter.jmx
-          outputReportsFolder: reports/
+          outputReportsFolder: result.jtl
           args: "--loglevel INFO"
           
       - uses: actions/upload-artifact@v1
         with:
           name: jmeter-test-results
-          path: reports/
+          path: result.jtl
 
     
