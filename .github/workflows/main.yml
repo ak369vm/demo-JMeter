@@ -20,9 +20,9 @@ jobs:
           outputReportsFolder: result.jtl
           args: "--loglevel INFO"
           
-     - name: Upload Results
-       uses: actions/upload-artifact@v2
-       with:
+      - name: Upload Results
+        uses: actions/upload-artifact@v2
+        with:
          name: jmeter-results
          path: result.jtl
 
