@@ -25,24 +25,23 @@ jobs:
          name: jmeter-results
          path: result.jtl
          
-     - name: Run tests
-        # ... your test step here
+ 
      - name: Notify slack success
-     if: success()
-     env:
-       SLACK_BOT_TOKEN: ${{ xoxe-1-My0xLTM3MDA5NjMzNDM2ODYtNDA2OTEzNTcwMzY4MC00MDQ1MzMxODg5Mzk1LWFlMGNjNTE1NmJiOTRlNzQwODNjNDY2ZGIwNzRlNDdkNjU4ZjkyNjMwY2JiYzczMGU4ODJhMDdjM2MzMzJkNDM }}
-     uses: voxmedia/github-action-slack-notify-build@v1
-     with:
-       channel: app-alerts
-       status: SUCCESS
-       color: good
+       if: success()
+       env:
+         SLACK_BOT_TOKEN: "xoxe-1-My0xLTM3MDA5NjMzNDM2ODYtNDA2OTEzNTcwMzY4MC00MDQ1MzMxODg5Mzk1LWFlMGNjNTE1NmJiOTRlNzQwODNjNDY2ZGIwNzRlNDdkNjU4ZjkyNjMwY2JiYzczMGU4ODJhMDdjM2MzMzJkNDM"
+       uses: voxmedia/github-action-slack-notify-build@v1
+       with:
+         channel: jmeter
+         status: SUCCESS
+         color: good
 
      - name: Notify slack fail
        if: failure()
        env:
-         SLACK_BOT_TOKEN: ${{ xoxe-1-My0xLTM3MDA5NjMzNDM2ODYtNDA2OTEzNTcwMzY4MC00MDQ1MzMxODg5Mzk1LWFlMGNjNTE1NmJiOTRlNzQwODNjNDY2ZGIwNzRlNDdkNjU4ZjkyNjMwY2JiYzczMGU4ODJhMDdjM2MzMzJkNDM }}
+         SLACK_BOT_TOKEN: "xoxe-1-My0xLTM3MDA5NjMzNDM2ODYtNDA2OTEzNTcwMzY4MC00MDQ1MzMxODg5Mzk1LWFlMGNjNTE1NmJiOTRlNzQwODNjNDY2ZGIwNzRlNDdkNjU4ZjkyNjMwY2JiYzczMGU4ODJhMDdjM2MzMzJkNDM"
        uses: voxmedia/github-action-slack-notify-build@v1
        with:
-         channel: app-alerts
+         channel: jmeter
          status: FAILED
          color: danger
