@@ -25,25 +25,24 @@ jobs:
          name: jmeter-results
          path: result.jtl
          
-      - name: Notify slack success
-        if: success()
-        env:
-         SLACK_BOT_TOKEN: ${{ xoxe.xoxp-1-Mi0yLTM3MDA5NjMzNDM2ODYtMzcwNzUxMzUzNDExNS00MDY5MTM1NzAzNjgwLTQwNDU0NDE4NzAyOTAtMGQwOWYwNTJmZTcxYjI1MGU1ZTdiZWQ1MGU1N2IzM2I0NzU4YjU2YzMwNmM0N2RmYjU2OTBlZWYzOTNmMjM5ZA }}
-        uses: voxmedia/github-action-slack-notify-build@v1
-        with:
-         channel: app-alerts
-         status: SUCCESS
-         color: good
+     - name: Run tests
+        # ... your test step here
+     - name: Notify slack success
+     if: success()
+     env:
+       SLACK_BOT_TOKEN: ${{ xoxe-1-My0xLTM3MDA5NjMzNDM2ODYtNDA2OTEzNTcwMzY4MC00MDQ1MzMxODg5Mzk1LWFlMGNjNTE1NmJiOTRlNzQwODNjNDY2ZGIwNzRlNDdkNjU4ZjkyNjMwY2JiYzczMGU4ODJhMDdjM2MzMzJkNDM }}
+     uses: voxmedia/github-action-slack-notify-build@v1
+     with:
+       channel: app-alerts
+       status: SUCCESS
+       color: good
 
-      - name: Notify slack fail
-        if: failure()
-        env:
-         SLACK_BOT_TOKEN: ${{ xoxe.xoxp-1-Mi0yLTM3MDA5NjMzNDM2ODYtMzcwNzUxMzUzNDExNS00MDY5MTM1NzAzNjgwLTQwNDU0NDE4NzAyOTAtMGQwOWYwNTJmZTcxYjI1MGU1ZTdiZWQ1MGU1N2IzM2I0NzU4YjU2YzMwNmM0N2RmYjU2OTBlZWYzOTNmMjM5ZA }}
-        uses: voxmedia/github-action-slack-notify-build@v1
-        with:
+     - name: Notify slack fail
+       if: failure()
+       env:
+         SLACK_BOT_TOKEN: ${{ xoxe-1-My0xLTM3MDA5NjMzNDM2ODYtNDA2OTEzNTcwMzY4MC00MDQ1MzMxODg5Mzk1LWFlMGNjNTE1NmJiOTRlNzQwODNjNDY2ZGIwNzRlNDdkNjU4ZjkyNjMwY2JiYzczMGU4ODJhMDdjM2MzMzJkNDM }}
+       uses: voxmedia/github-action-slack-notify-build@v1
+       with:
          channel: app-alerts
          status: FAILED
          color: danger
-         
-     
-    
