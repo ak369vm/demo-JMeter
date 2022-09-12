@@ -23,35 +23,35 @@ jobs:
         message: Starting Build and Deploy...
       if: always()
 
-      - name: PerfAction for JMeter
-        uses: QAInsights/PerfAction@v3.1
-        with:
+    - name: PerfAction for JMeter
+      uses: QAInsights/PerfAction@v3.1
+      with:
     # jmeter test plan to execute
          test-plan-path: jmeter.jmx
           
-      - name: Upload Results
-        uses: actions/upload-artifact@v2
-        with:
+    - name: Upload Results
+      uses: actions/upload-artifact@v2
+      with:
          name: jmeter-results
          path: result.jtl
          
      
-      - name: Notify slack success
-        if: success()
-        env:
-          SLACK_BOT_TOKEN: "xoxe.xoxp-1-Mi0yLTM3MDA5NjMzNDM2ODYtMzcwNzUxMzUzNDExNS00MDY5MTM1NzAzNjgwLTQwNjk5ODMxMjgxNDgtZTIyZGVhYjQzZjQzNWUwYzhmNDYwZmI0NTU2OWJkZGUwNjY5YjMwM2Q3ODE1MTViMWQ5NGE3OTc2NDdjZTFkMA"
-        uses: voxmedia/github-action-slack-notify-build@v1
-        with:
-          channel: jmeter
-          status: SUCCESS
-          color: good
+    - name: Notify slack success
+      if: success()
+      env:
+        SLACK_BOT_TOKEN: "xoxe.xoxp-1-Mi0yLTM3MDA5NjMzNDM2ODYtMzcwNzUxMzUzNDExNS00MDY5MTM1NzAzNjgwLTQwNjk5ODMxMjgxNDgtZTIyZGVhYjQzZjQzNWUwYzhmNDYwZmI0NTU2OWJkZGUwNjY5YjMwM2Q3ODE1MTViMWQ5NGE3OTc2NDdjZTFkMA"
+      uses: voxmedia/github-action-slack-notify-build@v1
+      with:
+        channel: jmeter
+        status: SUCCESS
+        color: good
 
-      - name: Notify slack fail
-        if: failure()
-        env:
-          SLACK_BOT_TOKEN: "xoxe.xoxp-1-Mi0yLTM3MDA5NjMzNDM2ODYtMzcwNzUxMzUzNDExNS00MDY5MTM1NzAzNjgwLTQwNjk5ODMxMjgxNDgtZTIyZGVhYjQzZjQzNWUwYzhmNDYwZmI0NTU2OWJkZGUwNjY5YjMwM2Q3ODE1MTViMWQ5NGE3OTc2NDdjZTFkMA"
-        uses: voxmedia/github-action-slack-notify-build@v1
-        with:
-          channel: jmeter
-          status: FAILED
-          color: danger
+    - name: Notify slack fail
+      if: failure()
+      env:
+        SLACK_BOT_TOKEN: "xoxe.xoxp-1-Mi0yLTM3MDA5NjMzNDM2ODYtMzcwNzUxMzUzNDExNS00MDY5MTM1NzAzNjgwLTQwNjk5ODMxMjgxNDgtZTIyZGVhYjQzZjQzNWUwYzhmNDYwZmI0NTU2OWJkZGUwNjY5YjMwM2Q3ODE1MTViMWQ5NGE3OTc2NDdjZTFkMA"
+      uses: voxmedia/github-action-slack-notify-build@v1
+      with:
+        channel: jmeter
+        status: FAILED
+        color: danger
