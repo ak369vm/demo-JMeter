@@ -29,7 +29,7 @@ jobs:
       - name: Notify slack success
         if: success()
         env:
-          SLACK_BOT_TOKEN: "xoxe.xoxp-1-Mi0yLTM3MDA5NjMzNDM2ODYtMzcwNzUxMzUzNDExNS00MDY5MTM1NzAzNjgwLTQwNTkzMzcxMTE3NjYtNzI1NjY3OTI2OWU2M2FhNjAyYWNkMTI2ZmI2MDBjNDY5ZGJhOTFiNTcwNWI0NWM0NTQxZTlkYTExYjFjZGE5MA"
+          SLACK_BOT_TOKEN: "xoxe.xoxp-1-Mi0yLTM3MDA5NjMzNDM2ODYtMzcwNzUxMzUzNDExNS00MDY5MTM1NzAzNjgwLTQwNjk5ODMxMjgxNDgtZTIyZGVhYjQzZjQzNWUwYzhmNDYwZmI0NTU2OWJkZGUwNjY5YjMwM2Q3ODE1MTViMWQ5NGE3OTc2NDdjZTFkMA"
         uses: voxmedia/github-action-slack-notify-build@v1
         with:
           channel: jmeter
@@ -39,7 +39,7 @@ jobs:
       - name: Notify slack fail
         if: failure()
         env:
-          SLACK_BOT_TOKEN: "xoxe.xoxp-1-Mi0yLTM3MDA5NjMzNDM2ODYtMzcwNzUxMzUzNDExNS00MDY5MTM1NzAzNjgwLTQwNTkzMzcxMTE3NjYtNzI1NjY3OTI2OWU2M2FhNjAyYWNkMTI2ZmI2MDBjNDY5ZGJhOTFiNTcwNWI0NWM0NTQxZTlkYTExYjFjZGE5MA"
+          SLACK_BOT_TOKEN: "xoxe.xoxp-1-Mi0yLTM3MDA5NjMzNDM2ODYtMzcwNzUxMzUzNDExNS00MDY5MTM1NzAzNjgwLTQwNjk5ODMxMjgxNDgtZTIyZGVhYjQzZjQzNWUwYzhmNDYwZmI0NTU2OWJkZGUwNjY5YjMwM2Q3ODE1MTViMWQ5NGE3OTc2NDdjZTFkMA"
         uses: voxmedia/github-action-slack-notify-build@v1
         with:
           channel: jmeter
