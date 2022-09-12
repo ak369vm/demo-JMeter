@@ -36,22 +36,4 @@ jobs:
          path: result.jtl
          
      
-    - name: Notify slack success
-      if: success()
-      env:
-        SLACK_BOT_TOKEN: "xoxe.xoxp-1-Mi0yLTM3MDA5NjMzNDM2ODYtMzcwNzUxMzUzNDExNS00MDY5MTM1NzAzNjgwLTQwNjk5ODMxMjgxNDgtZTIyZGVhYjQzZjQzNWUwYzhmNDYwZmI0NTU2OWJkZGUwNjY5YjMwM2Q3ODE1MTViMWQ5NGE3OTc2NDdjZTFkMA"
-      uses: voxmedia/github-action-slack-notify-build@v1
-      with:
-        channel: jmeter
-        status: SUCCESS
-        color: good
-
-    - name: Notify slack fail
-      if: failure()
-      env:
-        SLACK_BOT_TOKEN: "xoxe.xoxp-1-Mi0yLTM3MDA5NjMzNDM2ODYtMzcwNzUxMzUzNDExNS00MDY5MTM1NzAzNjgwLTQwNjk5ODMxMjgxNDgtZTIyZGVhYjQzZjQzNWUwYzhmNDYwZmI0NTU2OWJkZGUwNjY5YjMwM2Q3ODE1MTViMWQ5NGE3OTc2NDdjZTFkMA"
-      uses: voxmedia/github-action-slack-notify-build@v1
-      with:
-        channel: jmeter
-        status: FAILED
-        color: danger
+   
