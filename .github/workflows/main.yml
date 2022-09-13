@@ -23,10 +23,3 @@ jobs:
       with:
          name: jmeter-results
          path: result.jtl
-         
-   
-         
-   
-         
-     
-   
