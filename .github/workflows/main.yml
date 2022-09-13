@@ -34,7 +34,6 @@ jobs:
     - name: Slack Notification
       uses: act10ns/slack@v1
       with: 
-        status: starting
         steps: ${{ toJson(steps) }}
         channel: '#jmeter'
         config: .github/config/slack.yaml
