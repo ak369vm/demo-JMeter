@@ -33,7 +33,8 @@ jobs:
         status: starting
         steps: ${{ toJson(steps) }}
         channel: '#jmeter'
-        message: jmeter execution Succeeded...
+        config: .github/config/slack.yaml
+        message: jmeter execution Finished...
       if: always()   
          
    
