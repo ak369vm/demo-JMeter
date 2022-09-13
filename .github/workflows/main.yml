@@ -20,7 +20,7 @@ jobs:
       with: 
         status: starting
         channel: '#jmeter'
-        message: Starting Build and Deploy...
+        message: Slack Success and Fail...
       if: always()
 
     - name: PerfAction for JMeter
