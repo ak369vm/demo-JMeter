@@ -55,7 +55,7 @@ jobs:
         # Required mail subject:
         subject: Github Actions job result
         # Required recipients' addresses:
-        to: anjana.r@cloudifyops.com
+        to: anjana.r@cloudifyops.com,mohanraj.m@cloudifyops.com
         # Required sender full name (address can be skipped):
         from: anjanaradhakrish@gmail.com # <user@example.com>
         # Optional whether this connection use TLS (default is true if server_port is 465)
