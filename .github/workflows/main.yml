@@ -41,6 +41,7 @@ jobs:
         message: jmeter execution Finished...
       if: always() 
     - name: Send mail
+      if: always()
       uses: dawidd6/action-send-mail@v3
       with:
         # Required mail server address:
@@ -54,7 +55,7 @@ jobs:
         # Required mail subject:
         subject: Github Actions job result
         # Required recipients' addresses:
-        to: adarshashok.k@cloudifyops.com
+        to: anjana.r@cloudifyops.com
         # Required sender full name (address can be skipped):
         from: anjanaradhakrish@gmail.com # <user@example.com>
         # Optional whether this connection use TLS (default is true if server_port is 465)
