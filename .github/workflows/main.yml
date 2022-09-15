@@ -24,7 +24,13 @@ jobs:
       with:
     # jmeter test plan to execute
          test-plan-path: jmeter.jmx
-          
+    
+    - name: Run JMeter Action on a test
+      uses: rbhadti94/apache-jmeter-action@v0.5.0
+      with:
+        testFilePath: jmeter.jmx
+        outputReportsFolder: reports/
+        args: "--loglevel INFO"
     - name: Upload Results
       uses: actions/upload-artifact@v2
       with:
