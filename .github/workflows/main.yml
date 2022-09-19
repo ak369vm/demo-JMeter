@@ -28,14 +28,14 @@ jobs:
     - name: Run JMeter Action on a test
       uses: rbhadti94/apache-jmeter-action@v0.5.0
       with:
-        testFilePath: jmeter.jmx
-        outputReportsFolder: reports/
-        
-    - name: Upload Results folder
-      uses: actions/upload-artifact@v2
+          testFilePath: jmeter.jmx
+          outputReportsFolder: reports/
+          args: "--loglevel INFO"
+          
+    - uses: actions/upload-artifact@v1
       with:
-         name: jmeter-results-1
-         path: reports
+         name: jmeter-test-results
+         path: reports/
          
     - name: Upload Results
       uses: actions/upload-artifact@v2
