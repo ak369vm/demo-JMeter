@@ -30,7 +30,7 @@ jobs:
       with:
         testFilePath: jmeter.jmx
         outputReportsFolder: reports/
-        args: "--loglevel INFO"
+        args: "--loglevel INFO -e"
         
     - name: Upload Results folder
       uses: actions/upload-artifact@v2
