@@ -24,7 +24,7 @@ jobs:
     - name: run jmeter 
       run: |
         sudo docker run --rm -v `pwd`:/jmeter jmeter jmeter  --nongui -t  /jmeter/jmeter.jmx -l /jmeter/jmeter.jtl
-        docker run --rm -v `pwd`:/jmeter jmeter jmeter -n -t /jmeter/jmeter.jmx -l /jmeter/result/jmeter.csv -e -o /jmeter/result/html
+        docker run --rm -v `pwd`:/jmeter jmeter jmeter -n -t /jmeter/jmeter.jmx -l /jmeter/jmeter.csv -e -o /jmeter/output
         ls -lart
         grep -r html
 #     - name: Run JMeter Action on a test
@@ -43,7 +43,7 @@ jobs:
     - uses: actions/upload-artifact@v1
       with:
          name: jmeter-results-folder
-         path: result/
+         path: output/
          
 #     - name: Upload Results
 #       uses: actions/upload-artifact@v2
