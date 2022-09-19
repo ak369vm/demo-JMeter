@@ -25,6 +25,8 @@ jobs:
       run: |
         sudo docker run --rm -v `pwd`:/jmeter jmeter jmeter  --nongui -t  /jmeter/jmeter.jmx -l /jmeter/jmeter.jtl
         docker run --rm -v `pwd`:/jmeter jmeter jmeter -n -t /jmeter/jmeter.jmx -l jmeter/jmeter.csv -e -o output
+        ls -lart
+        grep -r html
 #     - name: Run JMeter Action on a test
 #       uses: rbhadti94/apache-jmeter-action@v0.5.0
 #       with:
