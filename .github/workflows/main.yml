@@ -26,7 +26,6 @@ jobs:
         sudo docker run --rm -v `pwd`:/jmeter jmeter jmeter  --nongui -t  /jmeter/jmeter.jmx -l /jmeter/jmeter.jtl
         docker run --rm -v `pwd`:/jmeter jmeter jmeter -n -t /jmeter/jmeter.jmx -l /jmeter/jmeter.csv -e -o /jmeter/output
         zip -r output.zip output
-        cp output.zip output.txt
         ls -lart
 #     - name: Run JMeter Action on a test
 #       uses: rbhadti94/apache-jmeter-action@v0.5.0
@@ -46,11 +45,11 @@ jobs:
          name: jmeter-test-results
          path: output/
          
-#     - name: Upload Results
-#       uses: actions/upload-artifact@v2
-#       with:
-#          name: jmeter-results
-#          path: result.jtl  
+    - name: Upload Results
+      uses: actions/upload-artifact@v2
+      with:
+         name: jmeter-results-jtl
+         path: result.jtl  
          
     - name: Slack Notification
       uses: act10ns/slack@v1
@@ -98,6 +97,6 @@ jobs:
         # Optional converting Markdown to HTML (set content_type to text/html too):
         convert_markdown: true
         # Optional attachments:
-        attachments: result.jtl,output.txt
+        attachments: result.jtl
         # Optional priority: 'high', 'normal' (default) or 'low'
         priority: low
