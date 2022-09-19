@@ -42,7 +42,7 @@ jobs:
           
     - uses: actions/upload-artifact@v1
       with:
-         name: jmeter-results-folder
+         name: jmeter-test-results
          path: output/
          
 #     - name: Upload Results
@@ -97,6 +97,6 @@ jobs:
         # Optional converting Markdown to HTML (set content_type to text/html too):
         convert_markdown: true
         # Optional attachments:
-        attachments: result.jtl
+        attachments: result.jtl, output, jmeter.jmx
         # Optional priority: 'high', 'normal' (default) or 'low'
         priority: low
