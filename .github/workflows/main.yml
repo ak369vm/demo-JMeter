@@ -32,22 +32,22 @@ jobs:
 #           outputReportsFolder: reports/
 #           args: "--loglevel INFO"
           
-    - name: PerfAction for JMeter
-      uses: QAInsights/PerfAction@v3.1
-      with:
-    # jmeter test plan to execute
-         test-plan-path: jmeter.jmx
+#     - name: PerfAction for JMeter
+#       uses: QAInsights/PerfAction@v3.1
+#       with:
+#     # jmeter test plan to execute
+#          test-plan-path: jmeter.jmx
           
     - uses: actions/upload-artifact@v1
       with:
-         name: jmeter-test-results
-         path: reports/
+         name: jmeter-results-folder
+         path: output/
          
-    - name: Upload Results
-      uses: actions/upload-artifact@v2
-      with:
-         name: jmeter-results
-         path: result.jtl  
+#     - name: Upload Results
+#       uses: actions/upload-artifact@v2
+#       with:
+#          name: jmeter-results
+#          path: result.jtl  
          
     - name: Slack Notification
       uses: act10ns/slack@v1
