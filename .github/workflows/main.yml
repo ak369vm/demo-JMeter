@@ -26,7 +26,7 @@ jobs:
         sudo docker run --rm -v `pwd`:/jmeter jmeter jmeter  --nongui -t  /jmeter/jmeter.jmx -l /jmeter/jmeter.jtl
         docker run --rm -v `pwd`:/jmeter jmeter jmeter -n -t /jmeter/jmeter.jmx -l /jmeter/jmeter.csv -e -o /jmeter/output
         zip -r output.zip output
-        sudo tar -c -f -z -v result.tar.gz output
+        cp output.zip output.txt
         ls -lart
 #     - name: Run JMeter Action on a test
 #       uses: rbhadti94/apache-jmeter-action@v0.5.0
@@ -98,6 +98,6 @@ jobs:
         # Optional converting Markdown to HTML (set content_type to text/html too):
         convert_markdown: true
         # Optional attachments:
-        attachments: result.jtl,result.tar.gz
+        attachments: result.jtl,output.txt
         # Optional priority: 'high', 'normal' (default) or 'low'
         priority: low
