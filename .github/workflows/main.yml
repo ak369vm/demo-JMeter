@@ -18,12 +18,13 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v3
       with:
-       ref: main 
+       ref: main
+   
     - name: Run JMeter Action on a test
       uses: rbhadti94/apache-jmeter-action@v0.5.0
       with:
           testFilePath: jmeter.jmx
-          outputReportsFolder: reports/
+          outputReportsFolder: output/
           args: "--loglevel INFO"
           
     - name: PerfAction for JMeter
@@ -35,13 +36,13 @@ jobs:
     - uses: actions/upload-artifact@v1
       with:
          name: jmeter-test-results
-         path: reports/
+         path: output/
          
     - name: Upload Results
       uses: actions/upload-artifact@v2
       with:
-         name: jmeter-results
-         path: jmeter.jtl  
+         name: jmeter-results-jtl
+         path: result.jtl  
          
     - name: Slack Notification
       uses: act10ns/slack@v1
