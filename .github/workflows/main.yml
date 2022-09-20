@@ -10,25 +10,93 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+     #environment: Production
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       
     steps:
     - name: checkout repo
       uses: actions/checkout@v3
       with:
-       ref: main 
-    - name: PerfAction for JMeter
-      uses: QAInsights/PerfAction@v3.1
-      with:
-    # jmeter test plan to execute
-         test-plan-path: jmeter.jmx 
-
+       ref: main
+    - name: build docker image
+      run: docker build -t jmeter .
+    - name: run jmeter 
+      run: |
+        sudo docker run --rm -v `pwd`:/jmeter jmeter jmeter  --nongui -t  /jmeter/jmeter.jmx -l /jmeter/jmeter.jtl
+        docker run --rm -v `pwd`:/jmeter jmeter jmeter -n -t /jmeter/jmeter.jmx -l /jmeter/jmeter.csv -e -o /jmeter/output
+        zip -r output.zip output
+        ls -lart
+#     - name: Run JMeter Action on a test
+#       uses: rbhadti94/apache-jmeter-action@v0.5.0
+#       with:
+#           testFilePath: jmeter.jmx
+#           outputReportsFolder: reports/
+#           args: "--loglevel INFO"
+          
+#     - name: PerfAction for JMeter
+#       uses: QAInsights/PerfAction@v3.1
+#       with:
+#     # jmeter test plan to execute
+#          test-plan-path: jmeter.jmx
+          
     - uses: actions/upload-artifact@v1
       with:
          name: jmeter-test-results
-         path: output/      
-          
+         path: output/
+         
     - name: Upload Results
       uses: actions/upload-artifact@v2
       with:
-         name: jmeter-results
-         path: jmeter.jtl
+         name: jmeter-results-jtl
+         path: jmeter.jtl  
+         
+    - name: Slack Notification
+      uses: act10ns/slack@v1
+      with: 
+        status: ${{ job.status }}
+        steps: ${{ toJson(steps) }}
+        channel: '#jmeter'
+        config: .github/config/slack.yaml
+        message: jmeter execution Finished...
+      if: always() 
+    - name: Send mail
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        # Required mail server address:
+        server_address: smtp.gmail.com
+        # Required mail server port:
+        server_port: 465
+        # Optional (recommended): mail server username:
+        username: ${{secrets.MAIL_USERNAME}}
+        # Optional (recommended) mail server password:
+        password: ${{secrets.MAIL_PASSWORD}}
+        # Required mail subject:
+        subject: Github Actions job result
+        # Required recipients' addresses:
+        to: anjana.r@cloudifyops.com
+        # Required sender full name (address can be skipped):
+        from: anjanaradhakrish@gmail.com # <user@example.com>
+        # Optional whether this connection use TLS (default is true if server_port is 465)
+        secure: true
+        # Optional plain body:
+        body: Build job completed successfully!
+        # Optional HTML body read from file:
+        # html_body: file://README.html
+        # Optional carbon copy recipients:
+        # cc: kyloren@example.com,leia@example.com
+        # Optional blind carbon copy recipients:
+        # bcc: r2d2@example.com,hansolo@example.com
+        # Optional recipient of the email response:
+        # reply_to: luke@example.com
+        # Optional Message ID this message is replying to:
+        # in_reply_to: <random-luke@example.com>
+        # Optional unsigned/invalid certificates allowance:
+        ignore_cert: true
+        # Optional converting Markdown to HTML (set content_type to text/html too):
+        convert_markdown: true
+        # Optional attachments:
+        attachments: jmeter.jtl
+        # Optional priority: 'high', 'normal' (default) or 'low'
+        priority: low
