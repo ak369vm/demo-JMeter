@@ -10,27 +10,44 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    #environment: Production
+     #environment: Production
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       
-    steps: 
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v3
+      with:
+       ref: main
+       
+    - name: Run JMeter Action on a test
+      uses: rbhadti94/apache-jmeter-action@v0.5.0
+      with:
+          testFilePath: jmeter.jmx
+          outputReportsFolder: reports/
+          args: "--loglevel INFO"
+          
     - name: PerfAction for JMeter
       uses: QAInsights/PerfAction@v3.1
       with:
     # jmeter test plan to execute
          test-plan-path: jmeter.jmx
           
+    - uses: actions/upload-artifact@v1
+      with:
+         name: jmeter-test-results
+         path: output/
+         
     - name: Upload Results
       uses: actions/upload-artifact@v2
       with:
-         name: jmeter-results
-         path: jmeter.jtl
+         name: jmeter-results-jtl
+         path: jmeter.jtl  
          
     - name: Slack Notification
       uses: act10ns/slack@v1
       with: 
-        status: starting
+        status: ${{ job.status }}
         steps: ${{ toJson(steps) }}
         channel: '#jmeter'
         config: .github/config/slack.yaml
