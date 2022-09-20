@@ -35,12 +35,12 @@ jobs:
     - uses: actions/upload-artifact@v1
       with:
          name: jmeter-test-results
-         path: reports/
+         path: output/
          
     - name: Upload Results
       uses: actions/upload-artifact@v2
       with:
-         name: jmeter-results
+         name: jmeter-results-jtl
          path: jmeter.jtl  
          
     - name: Slack Notification
