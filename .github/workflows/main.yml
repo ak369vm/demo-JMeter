@@ -18,38 +18,30 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v3
       with:
-       ref: main
-    - name: build docker image
-      run: docker build -t jmeter .
-    - name: run jmeter 
-      run: |
-        sudo docker run --rm -v `pwd`:/jmeter jmeter jmeter  --nongui -t  /jmeter/jmeter.jmx -l /jmeter/jmeter.jtl
-        docker run --rm -v `pwd`:/jmeter jmeter jmeter -n -t /jmeter/jmeter.jmx -l /jmeter/jmeter.csv -e -o /jmeter/output
-        zip -r output.zip output
-        ls -lart
-#     - name: Run JMeter Action on a test
-#       uses: rbhadti94/apache-jmeter-action@v0.5.0
-#       with:
-#           testFilePath: jmeter.jmx
-#           outputReportsFolder: reports/
-#           args: "--loglevel INFO"
+       ref: main 
+    - name: Run JMeter Action on a test
+      uses: rbhadti94/apache-jmeter-action@v0.5.0
+      with:
+          testFilePath: jmeter.jmx
+          outputReportsFolder: reports/
+          args: "--loglevel INFO"
           
-#     - name: PerfAction for JMeter
-#       uses: QAInsights/PerfAction@v3.1
-#       with:
-#     # jmeter test plan to execute
-#          test-plan-path: jmeter.jmx
+    - name: PerfAction for JMeter
+      uses: QAInsights/PerfAction@v3.1
+      with:
+    # jmeter test plan to execute
+         test-plan-path: jmeter.jmx
           
     - uses: actions/upload-artifact@v1
       with:
          name: jmeter-test-results
-         path: output/
+         path: reports/
          
     - name: Upload Results
       uses: actions/upload-artifact@v2
       with:
-         name: jmeter-results-jtl
-         path: jmeter.jtl  
+         name: jmeter-results
+         path: result.jtl  
          
     - name: Slack Notification
       uses: act10ns/slack@v1
@@ -97,6 +89,6 @@ jobs:
         # Optional converting Markdown to HTML (set content_type to text/html too):
         convert_markdown: true
         # Optional attachments:
-        attachments: jmeter.jtl
+        attachments: result.jtl
         # Optional priority: 'high', 'normal' (default) or 'low'
         priority: low
