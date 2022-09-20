@@ -18,8 +18,7 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v3
       with:
-       ref: main
-       
+       ref: main 
     - name: Run JMeter Action on a test
       uses: rbhadti94/apache-jmeter-action@v0.5.0
       with:
@@ -36,12 +35,12 @@ jobs:
     - uses: actions/upload-artifact@v1
       with:
          name: jmeter-test-results
-         path: output/
+         path: reports/
          
     - name: Upload Results
       uses: actions/upload-artifact@v2
       with:
-         name: jmeter-results-jtl
+         name: jmeter-results
          path: jmeter.jtl  
          
     - name: Slack Notification
@@ -52,4 +51,4 @@ jobs:
         channel: '#jmeter'
         config: .github/config/slack.yaml
         message: jmeter execution Finished...
-      if: always()   
+      if: always() 
