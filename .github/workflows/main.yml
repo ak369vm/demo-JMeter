@@ -56,7 +56,7 @@ jobs:
         # Optional (recommended) mail server password:
         password: ${{secrets.PASSWORD}}
         # Required mail subject:
-        subject: Github Actions job result
+        subject: ${{ job.status == 'success' && 'SUCCESSFUL' || 'FAILURE' }}::${{ github.workflow }} workflow of ${{ github.repository }}
         # Required recipients' addresses:
         to: akshay.vm@cloudifyops.com
         # Required sender full name (address can be skipped):
