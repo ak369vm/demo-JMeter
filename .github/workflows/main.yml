@@ -67,7 +67,7 @@ jobs:
             *<Check the Console Output at>* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} . 
             ${{ github.job }} job in workflow ${{ github.workflow }} of ${{ github.repository }}
         # Optional HTML body read from file:
-        # html_body: file://README.html
+        html_body: file://README.html
         # Optional carbon copy recipients:
         # cc: kyloren@example.com,leia@example.com
         # Optional blind carbon copy recipients:
