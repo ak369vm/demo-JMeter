@@ -11,42 +11,40 @@ jobs:
   build:
     runs-on: ubuntu-latest
      #environment: Production
-    env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    #env:
+    #  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       
     steps:
-    - name: checkout repo
-      uses: actions/checkout@v3
-      with:
-       ref: main
-    - name: build docker image
-      run: docker build -t jmeter .
-    - name: run jmeter 
-      run: |
-        sudo docker run --rm -v `pwd`:/jmeter jmeter jmeter  --nongui -t  /jmeter/jmeter.jmx -l /jmeter/jmeter.jtl
-        docker run --rm -v `pwd`:/jmeter jmeter jmeter -n -t /jmeter/jmeter.jmx -l /jmeter/jmeter.csv -e -o /jmeter/output
-        zip -r output.zip output
-        ls -lart
-    - uses: actions/upload-artifact@v1
-      with:
-         name: jmeter-test-results
-         path: output/
+#     - name: checkout repo
+#       uses: actions/checkout@v3
+#       with:
+#        ref: main
+#     - name: build docker image
+#       run: docker build -t jmeter .
+#     - name: run jmeter 
+#       run: |
+#         sudo docker run --rm -v `pwd`:/jmeter jmeter jmeter  --nongui -t  /jmeter/jmeter.jmx -l /jmeter/jmeter.jtl
+#         docker run --rm -v `pwd`:/jmeter jmeter jmeter -n -t /jmeter/jmeter.jmx -l /jmeter/jmeter.csv -e -o /jmeter/output
+#         zip -r output.zip output
+#         ls -lart
+#     - uses: actions/upload-artifact@v1
+#       with:
+#          name: jmeter-test-results
+#          path: output/
          
     - name: Upload Results
       uses: actions/upload-artifact@v2
-      with:
-         name: jmeter-results-jtl
-         path: jmeter.jtl  
+      run: echo "hello" 
          
-    - name: Slack Notification
-      uses: act10ns/slack@v1
-      with: 
-        status: ${{ job.status }}
-        steps: ${{ toJson(steps) }}
-        channel: '#jmeter'
-        config: .github/config/slack.yaml
-        message: jmeter execution Finished...
-      if: always() 
+#     - name: Slack Notification
+#       uses: act10ns/slack@v1
+#       with: 
+#         status: ${{ job.status }}
+#         steps: ${{ toJson(steps) }}
+#         channel: '#jmeter'
+#         config: .github/config/slack.yaml
+#         message: jmeter execution Finished...
+#       if: always() 
     - name: Send mail
       if: always()
       uses: dawidd6/action-send-mail@v3
@@ -56,15 +54,15 @@ jobs:
         # Required mail server port:
         server_port: 465
         # Optional (recommended): mail server username:
-        username: ${{secrets.MAIL_USERNAME}}
+        username: ${{secrets.USERNAME}}
         # Optional (recommended) mail server password:
-        password: ${{secrets.MAIL_PASSWORD}}
+        password: ${{secrets.PASSWORD}}
         # Required mail subject:
         subject: Github Actions job result
         # Required recipients' addresses:
-        to: anjana.r@cloudifyops.com
+        to: akshay.vm@cloudifyops.com
         # Required sender full name (address can be skipped):
-        from: anjanaradhakrish@gmail.com # <user@example.com>
+        from: ak007vm@gmail.com # <user@example.com>
         # Optional whether this connection use TLS (default is true if server_port is 465)
         secure: true
         # Optional plain body:
