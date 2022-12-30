@@ -64,7 +64,7 @@ jobs:
         secure: true
         # Optional plain body:
         body: | 
-            *Check the Console Output at* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} . 
+            *<Check the Console Output at>* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} . 
             ${{ github.job }} job in workflow ${{ github.workflow }} of ${{ github.repository }}
         # Optional HTML body read from file:
         # html_body: file://README.html
