@@ -20,13 +20,7 @@ jobs:
       with:
        ref: main
     - name: build docker image
-      run: docker build -t jmeter .
-    - name: run jmeter
-      run: |
-        sudo docker run --rm -v `pwd`:/jmeter jmeter jmeter  --nongui -t  /jmeter/jmeter.jmx -l /jmeter/jmeter.jtl
-        docker run --rm -v `pwd`:/jmeter jmeter jmeter -n -t /jmeter/jmeter.jmx -l /jmeter/jmeter.csv -e -o /jmeter/output
-        zip -r output.zip output
-        ls -lart
+      run: echo "hello"
     - name: "set env values"
         #if: ${{ env.DAY_OF_WEEK == 'Monday' }}
         #run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
@@ -35,11 +29,7 @@ jobs:
       run: |
          echo "$First_Name"
          sed -i 's/{status}/${{ env.First_Name }}/g' new.html
-         #sed -i 's/{build_url}/${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/g' new.html
-    - uses: actions/upload-artifact@v1
-      with:
-         name: jmeter-test-results
-         path: output/
+         sed -i 's/{build_url}/${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/g' new.html
          
          
 #     - name: Slack Notification
