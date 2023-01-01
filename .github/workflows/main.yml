@@ -27,7 +27,6 @@ jobs:
         docker run --rm -v `pwd`:/jmeter jmeter jmeter -n -t /jmeter/jmeter.jmx -l /jmeter/jmeter.csv -e -o /jmeter/output
         zip -r output.zip output
         ls -lart
-        exit 1
     - uses: actions/upload-artifact@v1
       with:
          name: jmeter-test-results
