@@ -31,7 +31,7 @@ jobs:
          echo "$First_Name"
          echo "$url"
          sed -i 's/{status}/${{ env.First_Name }}/g' new.html
-         sed -i 's/{build_url}/${{ env.url }}/g' new.html
+         sed -e 's/{build_url}/${{ env.url }}/g' new.html
          
          
 #     - name: Slack Notification
