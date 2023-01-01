@@ -29,6 +29,7 @@ jobs:
         url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
       run: |
          echo "$First_Name"
+         echo "$url"
          sed -i 's/{status}/${{ env.First_Name }}/g' new.html
          sed -i 's/{build_url}/${{ env.url }}/g' new.html
          
