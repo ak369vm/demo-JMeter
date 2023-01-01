@@ -26,10 +26,11 @@ jobs:
         #run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
       env:
         First_Name: ${{ job.status == 'success' && 'SUCCESSFUL::The job is done' || 'FAILURE::The job is failed' }}
+        url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
       run: |
          echo "$First_Name"
          sed -i 's/{status}/${{ env.First_Name }}/g' new.html
-         sed -i 's/{build_url}/${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/g' new.html
+         sed -i 's/{build_url}/${{ env.url }}/g' new.html
          
          
 #     - name: Slack Notification
