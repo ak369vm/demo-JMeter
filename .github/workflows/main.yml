@@ -31,7 +31,7 @@ jobs:
         #if: ${{ env.DAY_OF_WEEK == 'Monday' }}
         #run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
       env:
-        First_Name: ${{ job.status == 'success' && 'SUCCESSFUL' || 'FAILURE' }}
+        First_Name: ${{ job.status == 'success' && 'SUCCESSFUL::The job is done' || 'FAILURE::The job is failed' }}
       run: |
          echo "$First_Name"
          sed -i 's/{status}/${{ env.First_Name }}/g' new.html
