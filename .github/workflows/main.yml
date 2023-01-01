@@ -21,14 +21,20 @@ jobs:
        ref: main
     - name: build docker image
       run: docker build -t jmeter .
-    - name: run jmeter 
+    - name: run jmeter
       run: |
         sudo docker run --rm -v `pwd`:/jmeter jmeter jmeter  --nongui -t  /jmeter/jmeter.jmx -l /jmeter/jmeter.jtl
         docker run --rm -v `pwd`:/jmeter jmeter jmeter -n -t /jmeter/jmeter.jmx -l /jmeter/jmeter.csv -e -o /jmeter/output
         zip -r output.zip output
         ls -lart
-        x = ${{ env.WORKFLOW_CONCLUSION == 'success' && 'SUCCESSFUL' || 'FAILURE' }}
+        x = ${{ job.status == 'success' && 'SUCCESSFUL' || 'FAILURE' }}
         echo ${{ x }}
+    - name: "set env values"
+        #if: ${{ env.DAY_OF_WEEK == 'Monday' }}
+        #run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
+        env: 
+          First_Name: ${{ job.status == 'success' && 'SUCCESSFUL' || 'FAILURE' }}
+      run: echo "$First_Name"
     - uses: actions/upload-artifact@v1
       with:
          name: jmeter-test-results
