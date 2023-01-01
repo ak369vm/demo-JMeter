@@ -34,7 +34,7 @@ jobs:
         First_Name: ${{ job.status == 'success' && 'SUCCESSFUL' || 'FAILURE' }}
       run: |
          echo "$First_Name"
-         sed -i 's/{status}/$First_Name/g' new.html
+         sed -i 's/{status}/${{ env.First_Name }}/g' new.html
     - uses: actions/upload-artifact@v1
       with:
          name: jmeter-test-results
