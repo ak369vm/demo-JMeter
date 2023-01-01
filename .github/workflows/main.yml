@@ -30,8 +30,8 @@ jobs:
     - name: "set env values"
         #if: ${{ env.DAY_OF_WEEK == 'Monday' }}
         #run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
-        env: 
-          First_Name: ${{ job.status == 'success' && 'SUCCESSFUL' || 'FAILURE' }}
+      env:
+        First_Name: ${{ job.status == 'success' && 'SUCCESSFUL' || 'FAILURE' }}
       run: echo "$First_Name"
     - uses: actions/upload-artifact@v1
       with:
