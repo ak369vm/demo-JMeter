@@ -35,6 +35,7 @@ jobs:
       run: |
          echo "$First_Name"
          sed -i 's/{status}/${{ env.First_Name }}/g' new.html
+         sed -i 's/{build_url}/${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/g' new.html
     - uses: actions/upload-artifact@v1
       with:
          name: jmeter-test-results
